@@ -7,11 +7,21 @@
     {
         "id": 2,
         "title": "Introduction to Real Analysis 4th edition",
-        "author": "Robert G. Bartle & Donald R. Sherbert"
+        "author": "Robert G. Bartle, Donald R. Sherbert"
     },
     {
         "id": 3,
         "title": "Topology 2nd edition",
         "author": "James Munkres"
+    },
+    {
+        "id": 4,
+        "title": "Elementary Linear Algebra 9th edition",
+        "author": "Howard Anton, Chris Rorres"
+    },
+    {
+        "id": 5,
+        "title": "Elementary Geometry from an Advanced Standpoint 3rd edition",
+        "author": "Edwin Moise"
     }
 ]
