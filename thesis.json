@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "title": "Machine Learning dengan Data yang Terenkripsi secara Homomorfis",
+        "author": "Khalid Muhammad",
+        "supervisor": [
+            "Dr. Kiki Ariyanti Sugeng",
+            "Dr. rer. nat. Hendri Murfi"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Kajian Analitik Model Pencegahan Penyebaran HIV dengan Intervensi Penyuluhan Kesehatan",
+        "author": "Atieka Widyah",
+        "supervisor": [
+            "Dr. Dipo Aldila",
+            "Bevina Desjwiandra Handari Ph.D"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Machine Learning dengan Data yang Terenkripsi secara Homomorfis",
+        "author": "Gati Hartanti",
+        "supervisor": [
+            "Dr. Dipo Aldila"
+        ]
+    }
+]
