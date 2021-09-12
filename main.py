@@ -25,6 +25,15 @@ def get_book_by_id(id: int):
         return book
     raise HTTPException(status_code=404, detail="Book not found")
 
+@app.post("/book")
+def create_book(title: str, author: str):
+    with open('./book.json') as file:
+        books = json.load(file)
+    book = {'title': title, 'author': author}
+    book['id'] = len(books) + 1
+    books.append(book)
+    return book
+
 @app.get("/thesis/random")
 def get_random_thesis():
     with open('./thesis.json') as file:
