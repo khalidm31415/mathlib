@@ -24,5 +24,14 @@
         "supervisor": [
             "Dr. Dipo Aldila"
         ]
+    },
+    {
+        "id": 4,
+        "title": "Penerapan Metode Tabu Search dalam Menyelesaikan Permasalahan Taxi Sharing",
+        "author": "Revi Nurfathhiyah Hadiarti",
+        "supervisor": [
+            "Dr. Yudi Satria",
+            "Helen Burhan M.Si"
+        ]
     }
 ]
