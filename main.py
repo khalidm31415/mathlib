@@ -1,51 +1,84 @@
 import json
 import random
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, Body, Response
 
 
 app = FastAPI()
 
 @app.get("/ping")
 def ping():
-    return {"msg": "OK"}
+    return Response(status_code=200)
+
+
+# Book Endpoints
 
 @app.get("/book/random")
 def get_random_book():
-    with open('./book.json') as file:
+    with open('./data/book.json') as file:
         books = json.load(file)
     book = random.choice(books)
     return book
 
-@app.get("/book/{id}")
-def get_book_by_id(id: int):
-    with open('./book.json') as file:
+@app.get("/book/{_id}")
+def get_book_by_id(_id: int):
+    with open('./data/book.json') as file:
         books = json.load(file)
-    book = next((book for book in books if book['id'] == id), None)
-    if book:
-        return book
-    raise HTTPException(status_code=404, detail="Book not found")
+    for book in books:
+        if book['id'] == _id:
+            return book
+    return Response(status_code=404)
+
+@app.get("/book")
+def get_all_book():
+    with open('./data/book.json') as file:
+        books = json.load(file)
+        return books
 
 @app.post("/book")
-def create_book(title: str, author: str):
-    with open('./book.json') as file:
+def create_book(title: str = Body(...), author: str = Body(...)):
+    with open('./data/book.json') as file:
         books = json.load(file)
     book = {'title': title, 'author': author}
-    book['id'] = len(books) + 1
+    book['id'] = books[-1]['id'] + 1
     books.append(book)
+    with open('./data/book.json', 'w') as file:
+        books = json.dump(books, file, indent=4)
     return book
+
+@app.delete("/book/{_id}")
+def delete_book_by_id(_id: int):
+    with open('./data/book.json') as file:
+        books = json.load(file)
+    for book in books:
+        if book['id'] == _id:
+            books.remove(book)
+            with open('./data/book.json', 'w') as file:
+                books = json.dump(books, file, indent=4)
+            return Response(status_code=204)
+    return Response(status_code=404)
+
+
+# Thesis Endpoints
 
 @app.get("/thesis/random")
 def get_random_thesis():
-    with open('./thesis.json') as file:
+    with open('./data/thesis.json') as file:
         theses = json.load(file)
     thesis = random.choice(theses)
     return thesis
 
-@app.get("/thesis/{id}")
-def get_thesis_by_id(id: int):
-    with open('./thesis.json') as file:
+@app.get("/thesis/{_id}")
+def get_thesis_by_id(_id: int):
+    with open('./data/thesis.json') as file:
         theses = json.load(file)
     thesis = next((thesis for thesis in theses if thesis['id'] == id), None)
-    if thesis:
-        return thesis
-    raise HTTPException(status_code=404, detail="Thesis not found")
+    for thesis in theses:
+        if thesis['id'] == _id:
+            return thesis
+    return Response(status_code=404)
+
+@app.get("/thesis")
+def get_random_thesis():
+    with open('./data/thesis.json') as file:
+        theses = json.load(file)
+        return theses
