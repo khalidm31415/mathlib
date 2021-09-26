@@ -7,7 +7,7 @@ app = FastAPI()
 
 @app.get("/ping")
 def ping():
-    return Response(status_code=200)
+    return 'OK'
 
 
 # Book Endpoints
