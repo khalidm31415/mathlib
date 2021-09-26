@@ -78,7 +78,7 @@ def get_thesis_by_id(_id: int):
     return Response(status_code=404)
 
 @app.get("/thesis")
-def get_random_thesis():
+def get_all_thesis():
     with open('./data/thesis.json') as file:
         theses = json.load(file)
         return theses
