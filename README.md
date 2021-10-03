@@ -1,7 +1,7 @@
 # mathlib
 Math library API for FastAPI tutorial. 
 ## Getting Started
-1. Create a virtual environment if you haven't created one
+1. Create a virtual environment if you haven't created one, this command will create a folder named "env" in the current working directory
 ```
 python3 -m venv env
 ```
