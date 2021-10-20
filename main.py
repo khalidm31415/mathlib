@@ -1,9 +1,13 @@
 import json
 import random
-from fastapi import FastAPI, Body, Response
+
+import bcrypt
+from fastapi import FastAPI, Body, Response, Depends
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 
 app = FastAPI()
+security = HTTPBasic()
 
 @app.get("/ping")
 def ping():
@@ -35,7 +39,19 @@ def get_all_book():
         return books
 
 @app.post("/book")
-def create_book(title: str = Body(...), author: str = Body(...)):
+def create_book(title: str = Body(...), author: str = Body(...), credentials: HTTPBasicCredentials = Depends(security)):
+    with open('./data/admin.json') as file:
+        admins = json.load(file)
+
+    authenticated = False
+    for admin in admins:
+        if admin['username'] == credentials.username:
+            authenticated = bcrypt.checkpw(credentials.password.encode(), admin['password'].encode())
+            break
+
+    if not authenticated:
+        return Response(status_code=401)
+
     with open('./data/book.json') as file:
         books = json.load(file)
     book = {'title': title, 'author': author}
